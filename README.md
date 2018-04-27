@@ -1,2 +1,1 @@
-# ejemplos-recursion-haskell
-Ejemplos de recursión en haskell
+# Ejemplos de recursión en haskell
