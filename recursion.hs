@@ -49,10 +49,12 @@ repeat' x = x : repeat' x
 
 
 -- OTRO EJERCICIO
-reemplazarNValor :: Int -> a -> [a] -> [a]
-reemplazarNValor 0 val (_:xs) = val:xs
-reemplazarNValor pos val (x:xs) = x: reemplazarNValor (pos - 1) val xs
 
-reemplazarNValor n val (x:xs)
-  | n == 0 = val:xs
-  | otherwise = x:reemplazarNValor (n-1) val xs
+reemplazarNValor1 :: Int -> a -> [a] -> [a]
+reemplazarNValor1 n val (x:xs)
+  | n == 0 = val : xs
+  | otherwise = x : reemplazarNValor1 (n-1) val xs
+
+reemplazarNValor2 :: Int -> a -> [a] -> [a]
+reemplazarNValor2 n val lista = take n lista ++ [val] ++ drop (n + 1) lista
+
