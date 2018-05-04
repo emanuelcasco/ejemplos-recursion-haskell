@@ -1,5 +1,3 @@
-import Text.Show
-
 -- EJEMPLO 1
 length' :: [a] -> Int
 length' [] = 0
@@ -15,6 +13,22 @@ factorial :: Int -> Int
 factorial 0 = 1
 factorial x = x * factorial (x - 1)
 
+-- EJEMPLO 4
+repeat' :: a -> [a]
+repeat' x = x : repeat' x
+
+-- EJEMPLO 5
+
+{- A -}
+reemplazarEn :: Int -> a -> [a] -> [a]
+reemplazarEn pos val (x:xs)
+  | n == 0 = val : xs
+  | otherwise = x : reemplazarEn (pos - 1) val xs
+{- B -}
+reemplazarEn :: Int -> a -> [a] -> [a]
+reemplazarEn pos val lista = 
+  take pos lista ++ [val] ++ drop (pos + 1) lista
+
 -- EJERCICIOS
 sum' :: Num a => [a] -> a
 sum' [] = 0 
@@ -28,33 +42,17 @@ map' :: (a -> b) -> [a] -> [b]
 map' function [] = []
 map' function (x:xs) = function x : map' function xs
 
--- EJEMPLO 4
+elem' :: Eq a => a -> [a] -> Bool
+elem' val [] = False
+elem' val (x:xs) = val == x || elem' val xs
 
-repeat' :: a -> [a]
-repeat' x = x : repeat' x
+last' ::[a] -> a
+last' [x] = x
+last' (x:xs) = last' xs
 
--- elem' :: Eq a => a -> [a] -> Bool
--- elem' val [] = False
--- elem' val (x:xs) = val == x || elem' val xs
-
--- last' ::[a] -> a
--- last' [x] = x
--- last' (x:xs) = last' xs
-
--- filter' :: (a -> Bool) -> [a] -> [a]
--- filter' predicate [] = []
--- filter' predicate (x:xs)
---   | predicate x = x : filter' predicate xs
---   | otherwise = filter' predicate xs
-
-
--- OTRO EJERCICIO
-
-reemplazarNValor1 :: Int -> a -> [a] -> [a]
-reemplazarNValor1 n val (x:xs)
-  | n == 0 = val : xs
-  | otherwise = x : reemplazarNValor1 (n-1) val xs
-
-reemplazarNValor2 :: Int -> a -> [a] -> [a]
-reemplazarNValor2 n val lista = take n lista ++ [val] ++ drop (n + 1) lista
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' predicate [] = []
+filter' predicate (x:xs)
+  | predicate x = x : filter' predicate xs
+  | otherwise = filter' predicate xs
 
